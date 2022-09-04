@@ -1,4 +1,4 @@
-import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
+import { AppBar, Box, IconButton, Toolbar, Tooltip } from "@mui/material";
 import { IoIosBed } from "react-icons/io";
 import { TbPlaneInflight } from "react-icons/tb";
 import { NavLink } from "react-router-dom";
@@ -14,15 +14,17 @@ const Navbar = () => {
               isActive ? { color: "#febb02" } : { color: "white" }
             }
           >
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-            >
-              <IoIosBed />
-            </IconButton>
+            <Tooltip title="Stays">
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                sx={{ mr: 2 }}
+              >
+                <IoIosBed />
+              </IconButton>
+            </Tooltip>
           </NavLink>
           <NavLink
             to="/flights"
@@ -30,15 +32,17 @@ const Navbar = () => {
               isActive ? { color: "#febb02" } : { color: "white" }
             }
           >
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-            >
-              <TbPlaneInflight />
-            </IconButton>
+            <Tooltip title="Flights">
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                sx={{ mr: 2 }}
+              >
+                <TbPlaneInflight />
+              </IconButton>
+            </Tooltip>
           </NavLink>
         </Toolbar>
       </AppBar>
