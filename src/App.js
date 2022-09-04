@@ -1,5 +1,7 @@
+import AppRoutes from "./routes/routes";
+
 function App() {
-  return <h1>Booking.com</h1>;
+  return <AppRoutes />;
 }
 
 export default App;
