@@ -1,7 +1,7 @@
 import { Container, Grid } from "@mui/material";
-import CountGroupButton from "../../components/CountGroupButton";
 import DatePicker from "../../components/DatePicker";
 import DropDown from "../../components/DropDown";
+import StayInfoPopOver from "../../components/StayInfoPopOver";
 import cities from "../../data/cities";
 
 const Stays = () => {
@@ -17,8 +17,8 @@ const Stays = () => {
         <Grid item xs={2} sm={4} md={2}>
           <DatePicker title="To" />
         </Grid>
-        <Grid item xs={2} sm={4} md={2}>
-          <CountGroupButton />
+        <Grid item xs={2} sm={4} md={4}>
+          <StayInfoPopOver />
         </Grid>
       </Grid>
     </Container>
