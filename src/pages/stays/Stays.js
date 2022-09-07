@@ -1,4 +1,4 @@
-import { Container, Grid } from "@mui/material";
+import { Button, Container, Grid } from "@mui/material";
 import DatePicker from "../../components/DatePicker";
 import DropDown from "../../components/DropDown";
 import StayInfoPopOver from "../../components/StayInfoPopOver";
@@ -19,6 +19,9 @@ const Stays = () => {
         </Grid>
         <Grid item xs={2} sm={4} md={4}>
           <StayInfoPopOver />
+        </Grid>
+        <Grid item xs={2} sm={4} md={2}>
+          <Button variant="contained">Search</Button>
         </Grid>
       </Grid>
     </Container>
