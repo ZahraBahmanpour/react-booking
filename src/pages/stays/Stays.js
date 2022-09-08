@@ -2,7 +2,9 @@ import { Button, Container, Grid } from "@mui/material";
 import DatePicker from "../../components/DatePicker";
 import DropDown from "../../components/DropDown";
 import StayInfoPopOver from "../../components/StayInfoPopOver";
+import StaysList from "../../components/StaysList";
 import cities from "../../data/cities";
+import stays from "../../data/stays";
 
 const Stays = () => {
   return (
@@ -24,6 +26,7 @@ const Stays = () => {
           <Button variant="contained">Search</Button>
         </Grid>
       </Grid>
+      <StaysList stays={stays} />
     </Container>
   );
 };
