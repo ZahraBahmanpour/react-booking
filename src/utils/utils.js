@@ -12,3 +12,5 @@ export const transformRating = (rating) => {
     return "Average";
   }
 };
+
+export const dollarUSLocale = Intl.NumberFormat("en-US");

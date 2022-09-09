@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import { Link, useNavigate } from "react-router-dom";
 import { Avatar, Grid, Stack } from "@mui/material";
 import { orange } from "@mui/material/colors";
-import { transformRating } from "../../utils/utils";
+import { dollarUSLocale, transformRating } from "../../utils/utils";
 import styles from "./Card.module.css";
 
 const BasicCard = ({ id, name, rating, type, price, reserveCount, image }) => {
@@ -58,7 +58,7 @@ const BasicCard = ({ id, name, rating, type, price, reserveCount, image }) => {
                 <Avatar sx={{ bgcolor: orange[500] }}>{rating}</Avatar>
               </div>
               <Typography variant="h6" component="div">
-                {price}
+                ${dollarUSLocale.format(price)}
               </Typography>
               <Typography color="text.secondary">
                 Includes taxes and charges
