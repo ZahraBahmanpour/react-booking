@@ -3,13 +3,17 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Avatar, Grid, Stack } from "@mui/material";
 import { orange } from "@mui/material/colors";
 import { transformRating } from "../../utils/utils";
 import styles from "./Card.module.css";
 
 const BasicCard = ({ id, name, rating, type, price, reserveCount, image }) => {
+  const navigate = useNavigate();
+  const handleDetailsClick = () => {
+    navigate(`/stays/${id}`);
+  };
   return (
     <Card variant="outlined" sx={{ minWidth: 275 }}>
       <CardContent>
@@ -64,7 +68,7 @@ const BasicCard = ({ id, name, rating, type, price, reserveCount, image }) => {
         </Grid>
       </CardContent>
       <CardActions sx={{ justifyContent: "flex-end" }}>
-        <Button size="small" variant="contained">
+        <Button size="small" variant="contained" onClick={handleDetailsClick}>
           See Details
         </Button>
       </CardActions>
