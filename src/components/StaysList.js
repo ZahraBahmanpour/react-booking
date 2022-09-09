@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import BasicCard from "./Card";
+import BasicCard from "./Card/Card";
 
 const StaysList = ({ stays }) => {
   return (
