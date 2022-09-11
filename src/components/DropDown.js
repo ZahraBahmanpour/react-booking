@@ -14,7 +14,9 @@ const DropDown = ({ title, items }) => {
         onChange={(e) => setValue(e.target.value)}
       >
         {items.map((item) => (
-          <MenuItem value={item.value}>{item.text}</MenuItem>
+          <MenuItem key={item.value} value={item.value}>
+            {item.text}
+          </MenuItem>
         ))}
       </Select>
     </FormControl>
