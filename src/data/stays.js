@@ -10,6 +10,7 @@ const stays = [
     reserveCount: 1,
     breakfastIncluded: false,
     city: "Tehran",
+    allowChild: true,
   },
   {
     id: 2,
@@ -22,6 +23,7 @@ const stays = [
     reserveCount: 2,
     breakfastIncluded: false,
     city: "Tehran",
+    allowChild: true,
   },
   {
     id: 3,
@@ -34,6 +36,7 @@ const stays = [
     reserveCount: 1,
     breakfastIncluded: false,
     city: "Berlin",
+    allowChild: false,
   },
   {
     id: 4,
@@ -46,6 +49,7 @@ const stays = [
     reserveCount: 1,
     breakfastIncluded: true,
     city: "New York",
+    allowChild: true,
   },
   {
     id: 5,
@@ -58,6 +62,7 @@ const stays = [
     reserveCount: 1,
     breakfastIncluded: false,
     city: "Paris",
+    allowChild: true,
   },
   {
     id: 6,
@@ -70,6 +75,7 @@ const stays = [
     reserveCount: 1,
     breakfastIncluded: true,
     city: "New York",
+    allowChild: true,
   },
   {
     id: 7,
@@ -83,6 +89,7 @@ const stays = [
     breakfastIncluded: false,
     city: "Los Angeles",
     area: 60,
+    allowChild: false,
   },
   {
     id: 8,
@@ -95,6 +102,7 @@ const stays = [
     reserveCount: 2,
     breakfastIncluded: true,
     city: "Amsterdam",
+    allowChild: true,
   },
   {
     id: 9,
@@ -107,6 +115,7 @@ const stays = [
     reserveCount: 1,
     breakfastIncluded: false,
     city: "Nantes",
+    allowChild: true,
   },
   {
     id: 10,
@@ -119,6 +128,7 @@ const stays = [
     reserveCount: 5,
     breakfastIncluded: false,
     city: "Nantes",
+    allowChild: true,
   },
   {
     id: 11,
@@ -128,9 +138,10 @@ const stays = [
     price: 128,
     type: "Single Room",
     image: "11",
-    reserveCount: 6,
+    reserveCount: 0,
     breakfastIncluded: false,
     city: "Baltic Sea",
+    allowChild: true,
   },
   {
     id: 12,
@@ -140,10 +151,11 @@ const stays = [
     price: 203,
     type: "Two-Bedroom Apartment (4 Adults + 1 Child) 6",
     image: "12",
-    reserveCount: 2,
+    reserveCount: 0,
     breakfastIncluded: false,
     area: 50,
     city: "Berlin",
+    allowChild: true,
   },
 ];
 
