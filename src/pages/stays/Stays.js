@@ -4,9 +4,16 @@ import DropDown from "../../components/DropDown";
 import StayInfoPopOver from "../../components/StayInfoPopOver";
 import StaysList from "../../components/StaysList";
 import cities from "../../data/cities";
-import stays from "../../data/stays";
+import { useDispatch, useSelector } from "react-redux";
+import { getStays } from "../../redux/features/staysSlice";
 
 const Stays = () => {
+  const dispatch = useDispatch();
+  const { stays } = useSelector((state) => state.stays);
+  const handleSearch = (e) => {
+    e.preventDefault();
+    dispatch(getStays());
+  };
   return (
     <Container>
       <Grid container spacing={3} sx={{ marginTop: 5 }}>
@@ -23,7 +30,9 @@ const Stays = () => {
           <StayInfoPopOver />
         </Grid>
         <Grid item xs={2} sm={4} md={2}>
-          <Button variant="contained">Search</Button>
+          <Button variant="contained" onClick={handleSearch}>
+            Search
+          </Button>
         </Grid>
       </Grid>
       <StaysList stays={stays} />
