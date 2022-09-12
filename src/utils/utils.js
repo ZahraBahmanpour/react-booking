@@ -15,3 +15,4 @@ export const transformRating = (rating) => {
 
 export const dollarUSLocale = Intl.NumberFormat("en-US");
 export const DEFAULT_PAGE_SIZE = 5;
+export const BASE_URL = "http://localhost:4000";
