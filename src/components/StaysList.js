@@ -11,7 +11,7 @@ const StaysList = ({ stays }) => {
   const dispatch = useDispatch();
   const { totalStaysCount } = useSelector((state) => state.stays);
   useEffect(() => {
-    dispatch(getStays(page));
+    dispatch(getStays({ page }));
   }, [page, dispatch]);
   return (
     <Box sx={{ padding: 2, display: "flex", flexDirection: "column", gap: 5 }}>

@@ -6,14 +6,24 @@ const initialState = {
   loading: false,
   error: "",
   totalStaysCount: 0,
+  filters: {},
 };
-export const getStays = createAsyncThunk("stays/getStays", (page) =>
-  StaysService.getStaysRequest(page)
-);
+export const getStays = createAsyncThunk("stays/getStays", (params) => {
+  const { page, filters } = params;
+  return StaysService.getStaysRequest(page, filters);
+});
 
 const staysSlice = createSlice({
   name: "stays",
   initialState,
+  reducers: {
+    setFilter(state, action) {
+      const { filter } = action.payload;
+      for (let key in filter) {
+        state.filters[key] = filter[key];
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getStays.fulfilled, (state, action) => {
       state.stays = action.payload.stays;
@@ -32,4 +42,5 @@ const staysSlice = createSlice({
   },
 });
 
+export const { setFilter } = staysSlice.actions;
 export default staysSlice.reducer;

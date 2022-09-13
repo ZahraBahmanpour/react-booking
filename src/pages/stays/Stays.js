@@ -9,10 +9,10 @@ import { getStays } from "../../redux/features/staysSlice";
 
 const Stays = () => {
   const dispatch = useDispatch();
-  const { stays } = useSelector((state) => state.stays);
+  const { stays, filters } = useSelector((state) => state.stays);
   const handleSearch = (e) => {
     e.preventDefault();
-    dispatch(getStays());
+    dispatch(getStays({ page: 1, filters }));
   };
   return (
     <Container>
