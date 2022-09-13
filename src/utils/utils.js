@@ -16,3 +16,13 @@ export const transformRating = (rating) => {
 export const dollarUSLocale = Intl.NumberFormat("en-US");
 export const DEFAULT_PAGE_SIZE = 5;
 export const BASE_URL = "http://localhost:4000";
+
+export const generateQueryString = (page, filters) => {
+  let baseQueryString = `?_page=${page}&_limit=${DEFAULT_PAGE_SIZE}`;
+  if (filters) {
+    for (let key in filters) {
+      baseQueryString += `&${key}=${filters[key]}`;
+    }
+  }
+  return baseQueryString;
+};
