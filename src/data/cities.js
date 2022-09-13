@@ -1,5 +1,5 @@
 const cities = [
-  { text: "Berlin", value: "Tehran" },
+  { text: "Berlin", value: "Berlin" },
   { text: "Tehran", value: "Tehran" },
   { text: "New York", value: "New York" },
   { text: "Paris", value: "Paris" },
