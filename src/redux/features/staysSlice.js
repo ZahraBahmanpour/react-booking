@@ -23,6 +23,9 @@ const staysSlice = createSlice({
         state.filters[key] = filter[key];
       }
     },
+    resetFilters(state) {
+      state.filters = undefined;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getStays.fulfilled, (state, action) => {
@@ -42,5 +45,5 @@ const staysSlice = createSlice({
   },
 });
 
-export const { setFilter } = staysSlice.actions;
+export const { setFilter, resetFilters } = staysSlice.actions;
 export default staysSlice.reducer;
