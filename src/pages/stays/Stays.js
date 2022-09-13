@@ -3,11 +3,13 @@ import DatePicker from "../../components/DatePicker";
 import DropDown from "../../components/DropDown";
 import StayInfoPopOver from "../../components/StayInfoPopOver";
 import StaysList from "../../components/StaysList";
-import cities from "../../data/cities";
 import { useDispatch, useSelector } from "react-redux";
 import { getStays, resetFilters } from "../../redux/features/staysSlice";
+import { useEffect, useState } from "react";
+import cityServices from "../../services/city.services";
 
 const Stays = () => {
+  const [cities, setCities] = useState([]);
   const dispatch = useDispatch();
   const { stays, filters } = useSelector((state) => state.stays);
   const handleSearch = (e) => {
@@ -19,6 +21,13 @@ const Stays = () => {
     dispatch(resetFilters());
     dispatch(getStays({}));
   };
+  useEffect(() => {
+    const fetchCities = async () => {
+      const cities = await cityServices.getCitiesRequest();
+      setCities(cities);
+    };
+    fetchCities();
+  }, []);
   return (
     <Container>
       <Grid container spacing={3} sx={{ marginTop: 5 }}>
