@@ -1,7 +1,5 @@
-import axios from "axios";
-import { BASE_URL, generateQueryString } from "../utils/utils";
-
-axios.defaults.baseURL = BASE_URL;
+import axios from "./base.services";
+import { generateQueryString } from "../utils/utils";
 
 class StaysService {
   getStaysRequest = async (page = 1, filters) => {
