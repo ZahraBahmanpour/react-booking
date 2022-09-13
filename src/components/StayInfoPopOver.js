@@ -1,12 +1,16 @@
 import { Button, Popover, Stack } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CountGroupButton from "./CountGroupButton";
+import { useDispatch } from "react-redux";
+import { setFilter } from "../redux/features/staysSlice";
 
 const StayInfoPopOver = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [adultsCout, setAdultsCout] = useState(1);
   const [childrenCount, setChildrenCount] = useState(0);
   const [roomsCount, setRoomsCount] = useState(1);
+
+  const dispatch = useDispatch();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -16,6 +20,14 @@ const StayInfoPopOver = () => {
     setAnchorEl(null);
   };
   const open = Boolean(anchorEl);
+
+  useEffect(() => {
+    const filter = { reserveCount_gte: roomsCount };
+    if (childrenCount > 0) {
+      filter["allowChild"] = true;
+    }
+    dispatch(setFilter({ filter }));
+  }, [childrenCount, roomsCount, dispatch]);
   return (
     <div>
       <Button onClick={handleClick}>
