@@ -1,14 +1,13 @@
 import axios from "axios";
-import { BASE_URL, DEFAULT_PAGE_SIZE } from "../utils/utils";
+import { BASE_URL, generateQueryString } from "../utils/utils";
 
 axios.defaults.baseURL = BASE_URL;
 
 class StaysService {
-  getStaysRequest = async (page = 1) => {
+  getStaysRequest = async (page = 1, filters) => {
+    const queryString = generateQueryString(page, filters);
     try {
-      const response = await axios.get(
-        `/stays?_page=${page}&_limit=${DEFAULT_PAGE_SIZE}`
-      );
+      const response = await axios.get(`/stays${queryString}`);
       return {
         stays: response.data,
         totalStaysCount: response.headers["x-total-count"],
