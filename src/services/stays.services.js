@@ -14,6 +14,14 @@ class StaysService {
       return Promise.reject(e.message);
     }
   };
+  getStayRequest = async (id) => {
+    try {
+      const response = await axios.get(`/stays/${id}`);
+      return response.data;
+    } catch (e) {
+      return Promise.reject(e.message);
+    }
+  };
 }
 
 export default new StaysService();
