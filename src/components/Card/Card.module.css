@@ -6,3 +6,13 @@
 .link:hover {
   color: #bc5b01;
 }
+
+.heart-icon {
+  color: gray;
+  font-size: 22px;
+}
+
+.heart-icon:hover {
+  cursor: pointer;
+  color: #d32f2f;
+}
