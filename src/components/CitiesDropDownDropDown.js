@@ -4,25 +4,13 @@ import cityServices from "../services/city.services";
 
 const CitiesDropDown = ({ title }) => {
   const [cities, setCities] = useState([]);
-  const [totalCount, setTotalCount] = useState(0);
-  const [page, setPage] = useState(1);
   useEffect(() => {
     const fetchCities = async () => {
-      const { cities, totalCitiesCount } = await cityServices.getCitiesRequest(
-        page
-      );
+      const cities = await cityServices.getCitiesRequest();
       setCities(cities);
-      setTotalCount(totalCitiesCount);
     };
     fetchCities();
-  }, [page]);
-  return (
-    <DropDown
-      title={title}
-      items={cities}
-      totalItemsCount={totalCount}
-      handlePageChange={(e, value) => setPage(value)}
-    />
-  );
+  }, []);
+  return <DropDown title={title} items={cities} />;
 };
 export default CitiesDropDown;

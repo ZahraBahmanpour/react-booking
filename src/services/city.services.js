@@ -1,15 +1,10 @@
 import axios from "./base.services";
-import { generateQueryString } from "../utils/utils";
 
 class CityService {
-  getCitiesRequest = async (page) => {
-    const queryString = generateQueryString(page);
+  getCitiesRequest = async () => {
     try {
-      const response = await axios.get(`/cities${queryString}`);
-      return {
-        cities: response.data,
-        totalCitiesCount: response.headers["x-total-count"],
-      };
+      const response = await axios.get("cities");
+      return response.data;
     } catch (e) {
       return e.message;
     }
