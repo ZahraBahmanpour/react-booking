@@ -2,6 +2,7 @@ import {
   AppBar,
   Avatar,
   Box,
+  Button,
   IconButton,
   Menu,
   MenuItem,
@@ -12,12 +13,13 @@ import {
 import { useState } from "react";
 import { IoIosBed } from "react-icons/io";
 import { TbPlaneInflight } from "react-icons/tb";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const settings = ["Saved", "Logout"];
 
 const Navbar = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);
+  const navigate = useNavigate();
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -25,6 +27,10 @@ const Navbar = () => {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleSignin = () => {
+    navigate("/signin");
   };
 
   return (
@@ -69,6 +75,9 @@ const Navbar = () => {
           </NavLink>
         </Box>
         <Box sx={{ flexGrow: 0 }}>
+          <Button color="inherit" onClick={handleSignin}>
+            Sign In
+          </Button>
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               <Avatar alt="Remy Sharp" />
