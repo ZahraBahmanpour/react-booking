@@ -9,25 +9,7 @@ import { BiLockAlt } from "react-icons/bi";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import GoogleButton from "react-google-button";
-import { APP_URL } from "../utils/utils";
-
-const Copyright = (props) => {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href={APP_URL}>
-        Booking.com
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-};
+import Copyright from "../components/Copyright";
 
 const SignIn = () => {
   const handleSubmit = (event) => {
@@ -91,7 +73,7 @@ const SignIn = () => {
           </Button>
           <Grid container>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
