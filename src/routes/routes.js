@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NotFound from "../pages/404";
 import FlightDetails from "../pages/flights/FlightDetails";
 import Flights from "../pages/flights/Flights";
 import Home from "../pages/Home";
@@ -17,6 +18,7 @@ const AppRoutes = () => {
         <Route path="stays/:stayId" element={<StayDetails />} />
         <Route path="flights/:flightId" element={<FlightDetails />} />
         <Route path="signin" element={<SignIn />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
