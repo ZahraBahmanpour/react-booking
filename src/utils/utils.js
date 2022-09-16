@@ -1,3 +1,10 @@
+import {
+  USER_NOT_FOUND,
+  USER_NOT_FOUND_TRANSLATION,
+  WRONG_PASSSWORD,
+  WRONG_PASSSWORD_TRANSLATION,
+} from "../firebase/firebase-errors";
+
 export const transformRating = (rating) => {
   if (rating > 8.5) {
     return "Fantastic";
@@ -26,4 +33,15 @@ export const generateQueryString = (page, filters) => {
     }
   }
   return baseQueryString;
+};
+
+export const handleFirebaseAuthErrors = (errorCode) => {
+  switch (errorCode) {
+    case USER_NOT_FOUND:
+      return USER_NOT_FOUND_TRANSLATION;
+    case WRONG_PASSSWORD:
+      return WRONG_PASSSWORD_TRANSLATION;
+    default:
+      return "";
+  }
 };
