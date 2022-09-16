@@ -7,10 +7,13 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../firebase/firebase-config";
+import FavoriteServices from "../services/favorite.services";
+
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [favorites, setFavorites] = useState([]);
 
   const signIn = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
@@ -31,7 +34,13 @@ export const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
-      setUser(currentuser);
+      if (currentuser) {
+        setUser(currentuser);
+        FavoriteServices.getFavoritesRequest(currentuser.uid).then((result) => {
+          console.log("favorites", result[0]);
+          setFavorites(result[0].favorites);
+        });
+      }
     });
 
     return () => {
@@ -39,7 +48,7 @@ export const AuthContextProvider = ({ children }) => {
     };
   }, []);
   return (
-    <AuthContext.Provider value={{ signIn, signOut, signUp, user }}>
+    <AuthContext.Provider value={{ signIn, signOut, signUp, user, favorites }}>
       {children}
     </AuthContext.Provider>
   );
