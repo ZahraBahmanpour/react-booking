@@ -9,10 +9,15 @@ import { orange } from "@mui/material/colors";
 import { dollarUSLocale, transformRating } from "../../utils/utils";
 import styles from "./Card.module.css";
 import { FaHeart } from "react-icons/fa";
+import { UseAuthContext } from "../../context/AuthContext";
 
 const BasicCard = ({ id, name, rating, type, price, reserveCount, image }) => {
   const navigate = useNavigate();
+  const { favorites } = UseAuthContext();
   const handleDetailsClick = () => {
+    navigate(`/stays/${id}`);
+  };
+  const handleFavoriteClick = () => {
     navigate(`/stays/${id}`);
   };
   return (
@@ -30,7 +35,16 @@ const BasicCard = ({ id, name, rating, type, price, reserveCount, image }) => {
               />
               <Tooltip title="Add to Favorites" arrow>
                 <div style={{ position: "absolute", top: 10, right: 70 }}>
-                  <FaHeart className={styles["heart-icon"]} />
+                  <FaHeart
+                    className={
+                      styles[
+                        favorites.includes(id)
+                          ? "heart-icon-favorite"
+                          : "heart-icon"
+                      ]
+                    }
+                    onClick={handleFavoriteClick}
+                  />
                 </div>
               </Tooltip>
             </div>
