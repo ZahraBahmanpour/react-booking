@@ -3,12 +3,14 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut as googleSignOut,
+  createUserWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../firebase/firebase-config";
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
 
   const signIn = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
@@ -16,6 +18,15 @@ export const AuthContextProvider = ({ children }) => {
 
   const signOut = () => {
     return googleSignOut(auth);
+  };
+
+  const signUp = (email, password, firstName, lastName) => {
+    const displayName = `${firstName} ${lastName}`;
+    return createUserWithEmailAndPassword(auth, email, password).then(
+      (result) => {
+        updateProfile(result.user, { displayName });
+      }
+    );
   };
 
   useEffect(() => {
@@ -28,7 +39,7 @@ export const AuthContextProvider = ({ children }) => {
     };
   }, []);
   return (
-    <AuthContext.Provider value={{ signIn, signOut, user }}>
+    <AuthContext.Provider value={{ signIn, signOut, signUp, user }}>
       {children}
     </AuthContext.Provider>
   );
