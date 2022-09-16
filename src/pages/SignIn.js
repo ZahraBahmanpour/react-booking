@@ -10,15 +10,26 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import GoogleButton from "react-google-button";
 import Copyright from "../components/Copyright";
+import { UseAuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { Alert } from "@mui/material";
+import { useState } from "react";
+import { handleFirebaseAuthErrors } from "../utils/utils";
 
 const SignIn = () => {
-  const handleSubmit = (event) => {
+  const [error, setError] = useState("");
+  const { signIn } = UseAuthContext();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    try {
+      await signIn(data.get("email"), data.get("password"));
+      navigate("/");
+    } catch (e) {
+      setError(handleFirebaseAuthErrors(e.code));
+    }
   };
 
   const handleGoogleSignIn = (e) => {
@@ -63,6 +74,7 @@ const SignIn = () => {
             id="password"
             autoComplete="current-password"
           />
+          {error && <Alert severity="error">{error}</Alert>}
           <Button
             type="submit"
             fullWidth
