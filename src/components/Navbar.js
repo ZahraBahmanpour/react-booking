@@ -16,8 +16,6 @@ import { TbPlaneInflight } from "react-icons/tb";
 import { NavLink, useNavigate } from "react-router-dom";
 import { UseAuthContext } from "../context/AuthContext";
 
-const settings = ["Saved", "Logout"];
-
 const Navbar = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const { user, signOut } = UseAuthContext();
@@ -30,13 +28,22 @@ const Navbar = () => {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
-    signOut();
   };
 
   const handleSignin = () => {
     navigate("/signin");
   };
 
+  const handleSignout = () => {
+    signOut();
+    handleCloseUserMenu();
+  };
+
+  const handleSaved = () => {
+    navigate("/");
+    handleCloseUserMenu();
+  };
+  console.log(user);
   return (
     <AppBar position="static" sx={{ backgroundColor: "#003580" }}>
       <Toolbar>
@@ -82,7 +89,7 @@ const Navbar = () => {
           {user ? (
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" />
+                <Avatar alt={user.displayName}>{user.displayName[0]}</Avatar>
               </IconButton>
             </Tooltip>
           ) : (
@@ -106,11 +113,14 @@ const Navbar = () => {
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
-            {settings.map((setting) => (
-              <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">{setting}</Typography>
-              </MenuItem>
-            ))}
+            <MenuItem key={"saved"}>
+              <Typography textAlign="center" onClick={handleSaved}>
+                Saved
+              </Typography>
+            </MenuItem>
+            <MenuItem key={"signout"} onClick={handleSignout}>
+              <Typography textAlign="center">Sign Out</Typography>
+            </MenuItem>
           </Menu>
         </Box>
       </Toolbar>
