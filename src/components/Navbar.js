@@ -14,11 +14,14 @@ import { useState } from "react";
 import { IoIosBed } from "react-icons/io";
 import { TbPlaneInflight } from "react-icons/tb";
 import { NavLink, useNavigate } from "react-router-dom";
+import { UseAuthContext } from "../context/AuthContext";
 
 const settings = ["Saved", "Logout"];
 
 const Navbar = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);
+  const { user, signOut } = UseAuthContext();
+
   const navigate = useNavigate();
 
   const handleOpenUserMenu = (event) => {
@@ -27,6 +30,7 @@ const Navbar = () => {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+    signOut();
   };
 
   const handleSignin = () => {
@@ -75,14 +79,17 @@ const Navbar = () => {
           </NavLink>
         </Box>
         <Box sx={{ flexGrow: 0 }}>
-          <Button color="inherit" onClick={handleSignin}>
-            Sign In
-          </Button>
-          <Tooltip title="Open settings">
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <Avatar alt="Remy Sharp" />
-            </IconButton>
-          </Tooltip>
+          {user ? (
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="Remy Sharp" />
+              </IconButton>
+            </Tooltip>
+          ) : (
+            <Button color="inherit" onClick={handleSignin}>
+              Sign In
+            </Button>
+          )}
           <Menu
             sx={{ mt: "45px" }}
             id="menu-appbar"
