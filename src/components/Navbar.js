@@ -39,7 +39,7 @@ const Navbar = () => {
     handleCloseUserMenu();
   };
 
-  const handleSaved = () => {
+  const handleFavorites = () => {
     navigate("/");
     handleCloseUserMenu();
   };
@@ -113,9 +113,9 @@ const Navbar = () => {
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
-            <MenuItem key={"saved"}>
-              <Typography textAlign="center" onClick={handleSaved}>
-                Saved
+            <MenuItem key={"favorites"}>
+              <Typography textAlign="center" onClick={handleFavorites}>
+                Favorites
               </Typography>
             </MenuItem>
             <MenuItem key={"signout"} onClick={handleSignout}>
