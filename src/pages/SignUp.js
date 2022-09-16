@@ -2,8 +2,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -11,15 +9,30 @@ import { BiLockAlt } from "react-icons/bi";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Copyright from "../components/Copyright";
+import { UseAuthContext } from "../context/AuthContext";
+import { useState } from "react";
+import { Alert } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
+  const { signUp } = UseAuthContext();
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    try {
+      await signUp(
+        data.get("email"),
+        data.get("password"),
+        data.get("firstName"),
+        data.get("lastName")
+      );
+      navigate("/");
+    } catch (e) {
+      setError(e.message);
+    }
   };
 
   return (
@@ -83,13 +96,8 @@ export default function SignUp() {
                 autoComplete="new-password"
               />
             </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
-            </Grid>
           </Grid>
+          {error && <Alert severity="error">{error}</Alert>}
           <Button
             type="submit"
             fullWidth
