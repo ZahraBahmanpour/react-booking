@@ -36,11 +36,16 @@ const Navbar = () => {
 
   const handleSignout = () => {
     signOut();
+    navigate("/");
     handleCloseUserMenu();
   };
 
   const handleFavorites = () => {
     navigate("/");
+    handleCloseUserMenu();
+  };
+  const handleProfile = () => {
+    navigate("/profile");
     handleCloseUserMenu();
   };
   console.log(user);
@@ -115,6 +120,11 @@ const Navbar = () => {
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
+            <MenuItem key={"profile"}>
+              <Typography textAlign="center" onClick={handleProfile}>
+                Profile
+              </Typography>
+            </MenuItem>
             <MenuItem key={"favorites"}>
               <Typography textAlign="center" onClick={handleFavorites}>
                 Favorites

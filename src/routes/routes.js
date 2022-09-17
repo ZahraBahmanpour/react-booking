@@ -7,6 +7,8 @@ import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import StayDetails from "../pages/stays/StayDetails";
 import Stays from "../pages/stays/Stays";
+import UserProfile from "../pages/user/UserProfile";
+import PrivateRoute from "./PrivateRoute";
 
 const AppRoutes = () => {
   return (
@@ -15,6 +17,14 @@ const AppRoutes = () => {
         <Route path="/" element={<Home />}>
           <Route path="stays" element={<Stays />} />
           <Route path="flights" element={<Flights />} />
+          <Route
+            path="profile"
+            element={
+              <PrivateRoute>
+                <UserProfile />
+              </PrivateRoute>
+            }
+          />
         </Route>
         <Route path="stays/:stayId" element={<StayDetails />} />
         <Route path="flights/:flightId" element={<FlightDetails />} />
