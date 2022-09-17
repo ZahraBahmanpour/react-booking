@@ -68,7 +68,7 @@
     {
       "id": 6,
       "name": "R&R Strandhotel Baabe",
-      "rating": 8.0,
+      "rating": 8,
       "reviews": 520,
       "price": 155,
       "type": "Double Room with Extra Bed",
@@ -160,16 +160,58 @@
     }
   ],
   "cities": [
-    { "text": "Berlin", "value": "Berlin" },
-    { "text": "Tehran", "value": "Tehran" },
-    { "text": "New York", "value": "New York" },
-    { "text": "Paris", "value": "Paris" },
-    { "text": "Los Angeles", "value": "Los Angeles" },
-    { "text": "Amesterdam", "value": "Amesterdam" },
-    { "text": "Nantes", "value": "Nantes" },
-    { "text": "Baltic Sea", "value": "Baltic Sea" }
+    {
+      "text": "Berlin",
+      "value": "Berlin"
+    },
+    {
+      "text": "Tehran",
+      "value": "Tehran"
+    },
+    {
+      "text": "New York",
+      "value": "New York"
+    },
+    {
+      "text": "Paris",
+      "value": "Paris"
+    },
+    {
+      "text": "Los Angeles",
+      "value": "Los Angeles"
+    },
+    {
+      "text": "Amesterdam",
+      "value": "Amesterdam"
+    },
+    {
+      "text": "Nantes",
+      "value": "Nantes"
+    },
+    {
+      "text": "Baltic Sea",
+      "value": "Baltic Sea"
+    }
   ],
   "favorites": [
-    { "userId": "6hTuPVDiV0OXAwJ1o5nT80lNceM2", "favorites": [3, 5] }
+    {
+      "id": 1,
+      "userId": "6hTuPVDiV0OXAwJ1o5nT80lNceM2",
+      "favorites": [
+        5,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "userId": "0MFb1SQuc0RZB2tmHxvjU5KEidr2",
+      "favorites": [
+        2,
+        1
+      ],
+      "id": 2
+    }
   ]
 }
