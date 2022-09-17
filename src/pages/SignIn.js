@@ -18,7 +18,7 @@ import { handleFirebaseAuthErrors } from "../utils/utils";
 
 const SignIn = () => {
   const [error, setError] = useState("");
-  const { signIn } = UseAuthContext();
+  const { signIn, googleSignIn } = UseAuthContext();
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -32,8 +32,14 @@ const SignIn = () => {
     }
   };
 
-  const handleGoogleSignIn = (e) => {
+  const handleGoogleSignIn = async (e) => {
     e.preventDefault();
+    try {
+      await googleSignIn();
+      navigate("/");
+    } catch (e) {
+      setError(handleFirebaseAuthErrors(e.code));
+    }
   };
 
   return (
