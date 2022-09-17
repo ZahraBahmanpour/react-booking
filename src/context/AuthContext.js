@@ -10,10 +10,8 @@ import { auth } from "../firebase/firebase-config";
 import FavoriteServices from "../services/favorite.services";
 
 const AuthContext = createContext();
-
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [favorites, setFavorites] = useState([]);
 
   const signIn = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
@@ -32,14 +30,27 @@ export const AuthContextProvider = ({ children }) => {
     );
   };
 
+  const readFavorites = async (userId) => {
+    const favorites = await FavoriteServices.getFavoritesRequest(userId);
+    console.log("favorites", favorites);
+    setUser((prevState) => {
+      console.log("prevState", prevState);
+      return { ...prevState, favorites: favorites[0] };
+    });
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
       if (currentuser) {
-        setUser(currentuser);
         FavoriteServices.getFavoritesRequest(currentuser.uid).then((result) => {
-          console.log("favorites", result[0]);
-          setFavorites(result[0].favorites);
+          console.log("yahyah", result);
+          setUser({
+            userInfo: currentuser,
+            favorites: result.length ? result[0] : [],
+          });
         });
+      } else {
+        setUser(null);
       }
     });
 
@@ -48,7 +59,9 @@ export const AuthContextProvider = ({ children }) => {
     };
   }, []);
   return (
-    <AuthContext.Provider value={{ signIn, signOut, signUp, user, favorites }}>
+    <AuthContext.Provider
+      value={{ signIn, signOut, signUp, user, readFavorites }}
+    >
       {children}
     </AuthContext.Provider>
   );

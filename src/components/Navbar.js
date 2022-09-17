@@ -86,10 +86,12 @@ const Navbar = () => {
           </NavLink>
         </Box>
         <Box sx={{ flexGrow: 0 }}>
-          {user ? (
-            <Tooltip title="Open settings">
+          {user && user.userInfo ? (
+            <Tooltip title={user.userInfo.displayName}>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt={user.displayName}>{user.displayName[0]}</Avatar>
+                <Avatar alt={user.userInfo.displayName}>
+                  {user.userInfo.displayName && user.userInfo.displayName[0]}
+                </Avatar>
               </IconButton>
             </Tooltip>
           ) : (
