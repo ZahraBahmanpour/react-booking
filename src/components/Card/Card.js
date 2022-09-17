@@ -4,22 +4,20 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Link, useNavigate } from "react-router-dom";
-import { Avatar, Grid, Stack, Tooltip } from "@mui/material";
+import { Avatar, Grid, Stack } from "@mui/material";
 import { orange } from "@mui/material/colors";
 import { dollarUSLocale, transformRating } from "../../utils/utils";
 import styles from "./Card.module.css";
-import { FaHeart } from "react-icons/fa";
 import { UseAuthContext } from "../../context/AuthContext";
+import FavoriteButton from "./FavoriteButton/FavoriteButton";
 
 const BasicCard = ({ id, name, rating, type, price, reserveCount, image }) => {
   const navigate = useNavigate();
-  const { favorites } = UseAuthContext();
+  const { user } = UseAuthContext();
   const handleDetailsClick = () => {
     navigate(`/stays/${id}`);
   };
-  const handleFavoriteClick = () => {
-    navigate(`/stays/${id}`);
-  };
+
   return (
     <Card variant="outlined" sx={{ minWidth: 275 }}>
       <CardContent>
@@ -33,20 +31,7 @@ const BasicCard = ({ id, name, rating, type, price, reserveCount, image }) => {
                 alt={name}
                 style={{ borderRadius: 10 }}
               />
-              <Tooltip title="Add to Favorites" arrow>
-                <div style={{ position: "absolute", top: 10, right: 70 }}>
-                  <FaHeart
-                    className={
-                      styles[
-                        favorites.includes(id)
-                          ? "heart-icon-favorite"
-                          : "heart-icon"
-                      ]
-                    }
-                    onClick={handleFavoriteClick}
-                  />
-                </div>
-              </Tooltip>
+              {user && <FavoriteButton id={id} />}
             </div>
           </Grid>
           <Grid item xs={6}>
