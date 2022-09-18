@@ -1,6 +1,5 @@
 import { Typography } from "@mui/material";
-import Link from "@mui/material/Link";
-import { APP_URL } from "../utils/utils";
+import { Link } from "react-router-dom";
 
 const Copyright = (props) => {
   return (
@@ -11,10 +10,7 @@ const Copyright = (props) => {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href={APP_URL}>
-        Booking.com
-      </Link>{" "}
-      {new Date().getFullYear()}
+      <Link to={"/"}>Booking.com</Link> {new Date().getFullYear()}
       {"."}
     </Typography>
   );
