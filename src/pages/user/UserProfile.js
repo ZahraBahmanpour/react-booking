@@ -7,15 +7,23 @@ import { UseAuthContext } from "../../context/AuthContext";
 import { storage } from "../../firebase/firebase-config";
 
 const UserProfile = () => {
-  const [imgUrl, setImgUrl] = useState("");
+  const {
+    user: {
+      userInfo: { displayName, photoURL },
+    },
+  } = UseAuthContext();
+  const [imgUrl, setImgUrl] = useState(photoURL);
   const [progresspercent, setProgresspercent] = useState(0);
+  const { updateUserProfile } = UseAuthContext();
 
-  const handleFileChange = (e) => {};
-
+  const handleFileChange = (e) => {
+    if (e.target.files) {
+      setImgUrl(URL.createObjectURL(e.target.files[0]));
+    }
+  };
   const handleSave = (e) => {
     e.preventDefault();
     const file = e.target[0]?.files[0];
-    console.log("file", e.target);
     if (!file) return;
 
     const storageRef = ref(storage, `files/${file.name}`);
@@ -34,28 +42,23 @@ const UserProfile = () => {
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          updateUserProfile({ photoURL: downloadURL });
           setImgUrl(downloadURL);
         });
       }
     );
   };
 
-  const {
-    user: {
-      userInfo: { displayName },
-    },
-  } = UseAuthContext();
   return (
     <Container component="form" sx={{ marginTop: 5 }} onSubmit={handleSave}>
       <h1>{displayName}</h1>
       <FileUpload title={"Upload"} onFileChange={handleFileChange} />
-      {!imgUrl && progresspercent !== 0 && (
+      {progresspercent !== 0 && (
         <LinearProgressWithLabel value={progresspercent} />
       )}
       {imgUrl && (
         <div>
-          <h6>{imgUrl}</h6>
-          <img src={imgUrl} alt="uploaded file" width={200} height={200} />
+          <img src={imgUrl} alt="uploaded file" width={100} height={100} />
         </div>
       )}
       <Button variant="contained" type="submit">

@@ -93,7 +93,10 @@ const Navbar = () => {
           {user && user.userInfo ? (
             <Tooltip title={user.userInfo.displayName}>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt={user.userInfo.displayName}>
+                <Avatar
+                  alt={user.userInfo.displayName}
+                  src={user.userInfo.photoURL}
+                >
                   {user.userInfo.displayName && user.userInfo.displayName[0]}
                 </Avatar>
               </IconButton>

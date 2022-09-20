@@ -37,6 +37,10 @@ export const AuthContextProvider = ({ children }) => {
     );
   };
 
+  const updateUserProfile = (profile) => {
+    return updateProfile(auth.currentUser, profile);
+  };
+
   const readFavorites = async (userId) => {
     const favorites = await FavoriteServices.getFavoritesRequest(userId);
     setUser((prevState) => {
@@ -53,7 +57,6 @@ export const AuthContextProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
       if (currentuser) {
         FavoriteServices.getFavoritesRequest(currentuser.uid).then((result) => {
-          console.log("result", result);
           setUser({
             userInfo: currentuser,
             favorites: result.length
@@ -74,7 +77,15 @@ export const AuthContextProvider = ({ children }) => {
   }, []);
   return (
     <AuthContext.Provider
-      value={{ signIn, signOut, signUp, user, readFavorites, googleSignIn }}
+      value={{
+        signIn,
+        signOut,
+        signUp,
+        user,
+        readFavorites,
+        googleSignIn,
+        updateUserProfile,
+      }}
     >
       {children}
     </AuthContext.Provider>
