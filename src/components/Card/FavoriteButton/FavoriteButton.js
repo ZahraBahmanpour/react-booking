@@ -15,12 +15,16 @@ const FavoriteButton = ({ id }) => {
   const existingFavorite = favorites.find((f) => f.favorite === id);
   const handleFavoriteClick = async (e) => {
     e.preventDefault();
-    if (existingFavorite) {
-      await FavoriteServices.deleteFavoritesRequest(existingFavorite.id);
-    } else {
-      await FavoriteServices.createFavoritesRequest(uid, id);
+    try {
+      if (existingFavorite) {
+        await FavoriteServices.deleteFavoritesRequest(existingFavorite.id);
+      } else {
+        await FavoriteServices.createFavoritesRequest(uid, id);
+      }
+      await readFavorites(uid);
+    } catch (error) {
+      console.log(error);
     }
-    await readFavorites(uid);
   };
 
   return (
