@@ -12,7 +12,6 @@ const FavoriteButton = ({ id }) => {
     },
     readFavorites,
   } = UseAuthContext();
-  console.log("favoriteList", favoriteList);
   const handleFavoriteClick = async (e) => {
     e.preventDefault();
     if (favoriteList && favoriteList.length) {

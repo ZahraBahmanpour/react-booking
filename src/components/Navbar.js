@@ -48,7 +48,6 @@ const Navbar = () => {
     navigate("/profile");
     handleCloseUserMenu();
   };
-  console.log(user);
   return (
     <AppBar position="static" sx={{ backgroundColor: "#003580" }}>
       <Toolbar>

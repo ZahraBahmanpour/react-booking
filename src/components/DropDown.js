@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 const DropDown = ({ title, items }) => {
   const dispatch = useDispatch();
   const handleChange = (e, selected) => {
-    console.log(selected.value);
     dispatch(setFilter({ filter: { city: selected.value } }));
   };
   return (
