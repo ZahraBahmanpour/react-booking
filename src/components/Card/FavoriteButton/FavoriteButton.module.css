@@ -8,6 +8,10 @@
   font-size: 22px;
 }
 
+.heart-icon-favorite:hover {
+  cursor: pointer;
+}
+
 .heart-icon:hover {
   cursor: pointer;
   color: #d32f2f;

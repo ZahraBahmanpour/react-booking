@@ -7,19 +7,16 @@ import styles from "./FavoriteButton.module.css";
 const FavoriteButton = ({ id }) => {
   const {
     user: {
-      favorites: { id: favoriteId, favorites: favoriteList },
+      favorites,
       userInfo: { uid },
     },
     readFavorites,
   } = UseAuthContext();
+  const existingFavorite = favorites.find((f) => f.favorite === id);
   const handleFavoriteClick = async (e) => {
     e.preventDefault();
-    if (favoriteList && favoriteList.length) {
-      const newFavoritesList = [...favoriteList, id];
-      await FavoriteServices.updateFavoritesRequest(
-        favoriteId,
-        newFavoritesList
-      );
+    if (existingFavorite) {
+      await FavoriteServices.deleteFavoritesRequest(existingFavorite.id);
     } else {
       await FavoriteServices.createFavoritesRequest(uid, id);
     }
@@ -27,15 +24,14 @@ const FavoriteButton = ({ id }) => {
   };
 
   return (
-    <Tooltip title="Add to Favorites" arrow>
+    <Tooltip
+      title={existingFavorite ? "Remove from Favorites" : "Add to Favorites"}
+      arrow
+    >
       <div style={{ position: "absolute", top: 10, right: 70 }}>
         <FaHeart
           className={
-            styles[
-              favoriteList && favoriteList.includes(id)
-                ? "heart-icon-favorite"
-                : "heart-icon"
-            ]
+            styles[existingFavorite ? "heart-icon-favorite" : "heart-icon"]
           }
           onClick={handleFavoriteClick}
         />

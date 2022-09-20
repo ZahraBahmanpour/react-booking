@@ -13,16 +13,16 @@ class FavoriteService {
     try {
       const response = await axios.post("/favorites", {
         userId,
-        favorites: [stayId],
+        favorite: stayId,
       });
       return response.data;
     } catch (e) {
       return e.message;
     }
   };
-  updateFavoritesRequest = async (id, favorites) => {
+  deleteFavoritesRequest = async (id) => {
     try {
-      const response = await axios.patch(`/favorites/${id}`, { favorites });
+      const response = await axios.delete(`/favorites/${id}`);
       return response.data;
     } catch (e) {
       return e.message;

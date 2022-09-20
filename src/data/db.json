@@ -195,23 +195,19 @@
   ],
   "favorites": [
     {
-      "id": 1,
       "userId": "6hTuPVDiV0OXAwJ1o5nT80lNceM2",
-      "favorites": [
-        5,
-        1,
-        2,
-        3,
-        4
-      ]
+      "favorite": 3,
+      "id": 3
+    },
+    {
+      "userId": "6hTuPVDiV0OXAwJ1o5nT80lNceM2",
+      "favorite": 6,
+      "id": 4
     },
     {
       "userId": "0MFb1SQuc0RZB2tmHxvjU5KEidr2",
-      "favorites": [
-        2,
-        1
-      ],
-      "id": 2
+      "favorite": 1,
+      "id": 5
     }
   ]
 }

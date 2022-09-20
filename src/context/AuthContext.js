@@ -40,7 +40,12 @@ export const AuthContextProvider = ({ children }) => {
   const readFavorites = async (userId) => {
     const favorites = await FavoriteServices.getFavoritesRequest(userId);
     setUser((prevState) => {
-      return { ...prevState, favorites: favorites[0] };
+      return {
+        ...prevState,
+        favorites: favorites.map((f) => {
+          return { id: f.id, favorite: f.favorite };
+        }),
+      };
     });
   };
 
@@ -48,9 +53,14 @@ export const AuthContextProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
       if (currentuser) {
         FavoriteServices.getFavoritesRequest(currentuser.uid).then((result) => {
+          console.log("result", result);
           setUser({
             userInfo: currentuser,
-            favorites: result.length ? result[0] : [],
+            favorites: result.length
+              ? result.map((f) => {
+                  return { id: f.id, favorite: f.favorite };
+                })
+              : [],
           });
         });
       } else {
