@@ -1,15 +1,15 @@
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Link, useNavigate } from "react-router-dom";
-import { Avatar, Grid, Stack } from "@mui/material";
+import { Avatar, Button, Grid, Stack } from "@mui/material";
 import { orange } from "@mui/material/colors";
 import { dollarUSLocale, transformRating } from "../../utils/utils";
 import styles from "./Card.module.css";
 import { UseAuthContext } from "../../context/AuthContext";
 import FavoriteButton from "./FavoriteButton/FavoriteButton";
+import { MdKeyboardArrowRight } from "react-icons/md";
 
 const BasicCard = ({ id, name, rating, type, price, reserveCount, image }) => {
   const navigate = useNavigate();
@@ -77,6 +77,7 @@ const BasicCard = ({ id, name, rating, type, price, reserveCount, image }) => {
       <CardActions sx={{ justifyContent: "flex-end" }}>
         <Button size="small" variant="contained" onClick={handleDetailsClick}>
           See Details
+          <MdKeyboardArrowRight />
         </Button>
       </CardActions>
     </Card>
