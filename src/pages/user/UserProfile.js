@@ -11,10 +11,10 @@ const UserProfile = () => {
     user: {
       userInfo: { displayName, photoURL },
     },
+    updateUserProfile,
   } = UseAuthContext();
   const [imgUrl, setImgUrl] = useState(photoURL);
   const [progresspercent, setProgresspercent] = useState(0);
-  const { updateUserProfile } = UseAuthContext();
 
   const handleFileChange = (e) => {
     if (e.target.files) {
