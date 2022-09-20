@@ -29,7 +29,8 @@ const BasicCard = ({ id, name, rating, type, price, reserveCount, image }) => {
                 width={200}
                 height={200}
                 alt={name}
-                style={{ borderRadius: 10 }}
+                className={styles.img}
+                onClick={handleDetailsClick}
               />
               {user && <FavoriteButton id={id} />}
             </div>

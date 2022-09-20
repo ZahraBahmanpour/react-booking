@@ -2,7 +2,11 @@
   text-decoration: none;
   color: #0071c2;
 }
-
 .link:hover {
   color: #bc5b01;
+}
+
+.img {
+  cursor: pointer;
+  border-radius: 10px;
 }
