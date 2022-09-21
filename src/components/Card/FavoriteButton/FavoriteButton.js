@@ -29,7 +29,7 @@ const FavoriteButton = ({ id }) => {
 
   return (
     <Tooltip title={existingFavorite ? "Remove" : "Save"} arrow>
-      <div style={{ position: "absolute", top: 10, right: 70 }}>
+      <div style={{ position: "absolute", top: 10, right: 90 }}>
         <FaHeart
           className={
             styles[existingFavorite ? "heart-icon-favorite" : "heart-icon"]
