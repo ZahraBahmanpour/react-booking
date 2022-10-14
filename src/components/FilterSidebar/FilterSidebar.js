@@ -8,8 +8,8 @@ const FilterSidebar = () => {
       <Typography variant="h6" component="div" sx={{ margin: 1 }}>
         Filter by:
       </Typography>
-      {FilterGroups.map((fg) => (
-        <FilterCard {...fg} />
+      {FilterGroups.map((fg, i) => (
+        <FilterCard key={i} {...fg} />
       ))}
     </Card>
   );
